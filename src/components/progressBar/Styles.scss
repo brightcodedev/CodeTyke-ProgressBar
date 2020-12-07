@@ -1,15 +1,25 @@
 @import "../../styles/utils/colors";
 
+$progressBarBorderRadius: 10px;
+
 .progressBar {
     width: 100%;
-    height: 2px;
-    background-color: $elephant-paw;
+    height: 15px;
     position: relative;
+    display: flex;
+    align-items: center;
+    &--incomplete {
+      height: 2px;
+      width: 100%;
+      background-color: $elephant-paw;
+    }
     &--complete {
       position: absolute;
       top: 0;
-      left: 0;
-      height: 12px;
+      height: 100%;
       background-color: $barney;
+      border-top-left-radius: $progressBarBorderRadius;
+      border-bottom-left-radius: $progressBarBorderRadius;
+      transition: 0.5s;
     }
 }
