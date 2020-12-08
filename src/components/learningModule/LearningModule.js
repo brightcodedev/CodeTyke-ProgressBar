@@ -10,6 +10,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
   const [quizData, setQuizData] = React.useState({});
   const [isComplete, setIsComplete] = React.useState(false);
+  const [progress, setProgress] = React.useState(1)
 
   let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
 
@@ -34,12 +35,15 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   }
 
   const handleSubmit=()=> {
+
     if(currentQuestionId < quizData.totalQuestions-1){
-      console.log(currentQuestionId)
+      setProgress((prevProgress) => prevProgress + 1)
       setCurrentQuestionId(currentQuestionId+1);
     } else if (!isComplete) {
+      setProgress((prevProgress) => prevProgress + 1)
       setIsComplete(true);
     } else {
+      setProgress(1)
       setCurrentQuestionId(0);
       setIsComplete(false);
       setGameStatus('new');
@@ -55,10 +59,10 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
 
   return (
     <div className="learningModule">
+      <ProgressBar max={quizData.totalQuestions + 1} value={progress}/>
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
-            <ProgressBar totalSegments={quizData.totalQuestions + 1} segmentsComplete={currentQuestionId + 1}/>
             <div className="learningModule__title">
               { currentQuestion.title }
             </div>
@@ -78,10 +82,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
         </>
       }
       {isComplete &&
-        <>
-          <ProgressBar totalSegments={quizData.totalQuestions + 1} segmentsComplete={quizData.totalQuestions + 1}/>
           <Intro message="Congratulations. You've completed this level!" buttonLabel="Play again"  buttonClick={handleSubmit} />
-        </>
       }
     </div>
   )

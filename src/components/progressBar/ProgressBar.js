@@ -3,27 +3,17 @@ import React from 'react';
 import './Styles.scss';
 
 const ProgressBar = (props) => {
-    console.log("PROPS", props)
-    const {totalSegments, segmentsComplete} = props
+    const {max, value} = props
 
-    const progressPercent = segmentsComplete / totalSegments * 100
-    const remainingPercent = 100 - progressPercent
+    const progressPercent = value / max * 100
 
     const fillStyle = {
         width: `${progressPercent}%`
     }
-    const remainingStyle = {
-        width: `${remainingPercent}%`
-    }
-    const endcapStyle = {
-      display: remainingPercent ? 'unset' : 'none'
-    }
 
     return (
-        <div className="progressBar" role="progressbar" aria-valuenow={segmentsComplete} aria-valuemin="0" aria-valuemax={totalSegments} >
+        <div className="progressBar" role="progressbar" aria-valuenow={value} aria-valuemin="0" aria-valuemax={max} >
             <div className="progressBar__fill" style={fillStyle}></div>
-            <div className="progressBar__remaining" style={remainingStyle}></div>
-            <div className="progressBar__endcap" style={endcapStyle}></div>
         </div>
     )
 }

@@ -3,26 +3,36 @@
 .progressBar {
     margin: 8px;
     height: 15px;
+    position: relative;
     border-radius: 50px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
 
     &__fill {
         height: 100%;
         background-color: $barney;
         display: inline-block;
+        position: relative;
+        z-index: 1;
+        transition: 0.5s ease-in-out;
     }
 
-    &__remaining {
+    &::before {
+        content: '';
         height: 15%;
+        width: 100%;
         background-color: $elephant-paw;
-        display: inline-block;
+        position: absolute;
+        top: calc(50% - 15% / 2);
     }
-    &__endcap {
+
+    &::after {
+        content: '';
         width: 10px;
         height: 10px;
         border-radius: 10px;
         background-color: $elephant-paw;
+        position: absolute;
+        top: calc(50% - 5px);
+        right: 0px;
     }
 }
