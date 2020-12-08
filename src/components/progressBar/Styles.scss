@@ -1,0 +1,32 @@
+@import '../../styles/utils/colors';
+@import '../../styles/utils/breakpoints';
+
+
+.progressBar {
+  position: relative;
+  width: 100%;
+  @media only screen and (max-width: $tablet) {
+    display:flex;
+    justify-content:center;
+  }
+
+  &__line {
+    background-color: $elephant-paw;
+    height: 5px;
+    margin: 10 auto;
+    @media only screen and (max-width: $tablet) {
+      width: 90%;
+    }
+  }
+  &__completedBar {
+    position: absolute;
+    top: -5px;
+    background-color: $barney;
+    border-radius: 50px 0 0 50px;
+    height: 15px;
+    transition: .7s;
+    @media only screen and (max-width: $tablet) {
+      max-width: 90%;
+    }
+  }
+}
