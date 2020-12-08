@@ -2,6 +2,7 @@ import React from 'react';
 import SelectionBox from '../selectionBox/SelectionBox';
 import Button from '../button/Button';
 import Intro from '../intro/Intro';
+import ProgressBar from '../progressBar/ProgressBar'
 
 import './Styles.scss';
 
@@ -9,9 +10,9 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
   const [quizData, setQuizData] = React.useState({});
   const [isComplete, setIsComplete] = React.useState(false);
-  
+
   let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
-  
+
   React.useEffect(()=>{
     getQuizData();
   },[]);
@@ -44,6 +45,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       setGameStatus('new');
     }
   }
+
   let possibleAnswers = [];
   if(currentQuestion.possibleAnswers){
     possibleAnswers = currentQuestion.possibleAnswers.map((answer, index) => {
@@ -56,6 +58,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
+            <ProgressBar totalSegments={quizData.totalQuestions + 1} segmentsComplete={currentQuestionId + 1}/>
             <div className="learningModule__title">
               { currentQuestion.title }
             </div>
@@ -75,7 +78,10 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
         </>
       }
       {isComplete &&
-        <Intro message="Congratulations. You've completed this level!" buttonLabel="Play again"  buttonClick={handleSubmit} />
+        <>
+          <ProgressBar totalSegments={quizData.totalQuestions + 1} segmentsComplete={quizData.totalQuestions + 1}/>
+          <Intro message="Congratulations. You've completed this level!" buttonLabel="Play again"  buttonClick={handleSubmit} />
+        </>
       }
     </div>
   )
