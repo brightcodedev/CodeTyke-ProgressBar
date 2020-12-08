@@ -27,6 +27,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
         return res.json();
       }).then((data)=>{
         setQuizData(data);
+        console.log(data)
       }).catch((err)=>{
         console.log(err);
       });
@@ -57,7 +58,11 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
         <>
           <div className="learningModule__header">
             <div className="learningModule__title">
+              <progress id="file" style={{width: "100%"}} value={currentQuestionId * 25} max="100">  </progress>
+              <div className="learningModule__wrapper">
               { currentQuestion.title }
+                <img className="learningModule__icon" alt="info icon" src="/assets/info.png" />
+              </div>
             </div>
             <div className="learningModule__subHeader">
               { currentQuestion.additionalInfo }
