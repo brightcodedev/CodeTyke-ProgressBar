@@ -34,8 +34,4 @@
     background-color: $barney;
     transition: 0.3s ease;
   }
-
-  @media only screen and (max-width: $tablet) {
-    margin: 0 10px;
-  }
 }
