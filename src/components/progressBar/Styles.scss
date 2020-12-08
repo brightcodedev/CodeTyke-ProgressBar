@@ -1,0 +1,38 @@
+@import '../../styles/utils/colors';
+
+.progressBar {
+    margin: 8px;
+    height: 15px;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+
+    &__fill {
+        height: 100%;
+        background-color: $barney;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        transition: 0.5s ease-in-out;
+    }
+
+    &::before {
+        content: '';
+        height: 15%;
+        width: 100%;
+        background-color: $elephant-paw;
+        position: absolute;
+        top: calc(50% - 15% / 2);
+    }
+
+    &::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        background-color: $elephant-paw;
+        position: absolute;
+        top: calc(50% - 5px);
+        right: 0px;
+    }
+}
