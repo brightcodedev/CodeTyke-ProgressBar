@@ -2,6 +2,7 @@ import React from 'react';
 import SelectionBox from '../selectionBox/SelectionBox';
 import Button from '../button/Button';
 import Intro from '../intro/Intro';
+import ProgressBar from '../progressBar/ProgressBar';
 
 import './Styles.scss';
 
@@ -57,12 +58,11 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
+            <div className="learningModule__progressBarContainer">
+              <ProgressBar quizData={quizData} currentQuestionId={currentQuestionId}/>
+            </div>
             <div className="learningModule__title">
-              <progress id="file" style={{width: "100%"}} value={currentQuestionId * 25} max="100">  </progress>
-              <div className="learningModule__wrapper">
               { currentQuestion.title }
-                <img className="learningModule__icon" alt="info icon" src="/assets/info.png" />
-              </div>
             </div>
             <div className="learningModule__subHeader">
               { currentQuestion.additionalInfo }
