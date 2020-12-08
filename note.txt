@@ -1,0 +1,39 @@
+currentQuestion ID is 0 on first question, and so percent on bar is about 25% because 
+
+  (currentID + 1) / quizData.totalQuestion + 1
+  -> 1 / 5 = 0.20
+
+  last q:
+    3 + 1 / 5 = 4/5 = 80%
+
+
+
+The progress bar should have N+1 segments where N is the number of questions in a series. So if there are 4 questions in a series and the user is on the first question, they progress bar is 20% of the way covered. On the last question, it is 80% covered. Finally when the user finishes all the questions, the user sees a screen announcing the questions are complete and the progress bar is fully covered.
+
+- Create a progress bar
+
+
+FLOW
+- user clicks start, gameStatus is set to inProgress
+
+IF THE GAME IS inProgress....
+- user is on first question and currentQuestionId is initialized to 0
+- at this time progress bar should be at 20% because...
+  - (currentQuestionId + 1) / quizData.totalQuestion + 1 = 0.20
+
+- user selects choice and clicks submit, now currentQuestionId is 1, at this time, progress bar is 
+    1 + 1 / (4 + 1) = 2/5 = 0.40
+
+- user selects choice and clicks submit, now currentQuestionId is 2, at this time, progress bar is 
+    2 + 1 / (4 + 1) = 3/5 = 0.60
+
+- user selects choice and clicks submit, now currentQuestionId is 3, at this time, progress bar is 
+    3 + 1 / (4 + 1) = 4/5 = 0.80
+
+- user selects choice and clicks submit, now currentQuestionId is 4, this is out of bound, so currentQuestionId becomes 0 again, and isCompleted is set to true and gameStatus is set to new 
+__________
+IF the game isCompleted: 
+- at this time, progress bar is 100%
+
+
+> progress bar should show up on learning module
