@@ -2,6 +2,7 @@ import React from 'react';
 import SelectionBox from '../selectionBox/SelectionBox';
 import Button from '../button/Button';
 import Intro from '../intro/Intro';
+import ProgressBar from '../progressBar/ProgressBar';
 
 import './Styles.scss';
 
@@ -27,6 +28,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
         return res.json();
       }).then((data)=>{
         setQuizData(data);
+        console.log(data)
       }).catch((err)=>{
         console.log(err);
       });
@@ -56,6 +58,9 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
+            <div className="learningModule__progressBarContainer">
+              <ProgressBar quizData={quizData} currentQuestionId={currentQuestionId}/>
+            </div>
             <div className="learningModule__title">
               { currentQuestion.title }
             </div>
