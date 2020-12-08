@@ -14,6 +14,22 @@
         font-size: 1.5em;
     }
 
+    &__innerWrapper {
+        @media only screen and (max-width: $mobile) {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__icon {
+        display: none; 
+        @media only screen and (max-width: $mobile) {
+            display: inline;
+            height: 25px;
+            width: 25px;
+        }
+    }
+
     &__subHeader{
         @include subheader;
         min-height: 42px;

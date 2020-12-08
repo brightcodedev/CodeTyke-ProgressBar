@@ -13,11 +13,11 @@ function App() {
     <div>
       <Navbar />
       <div id="mainWrapper">
-        { gameStatus == 'new' && 
+        { gameStatus === 'new' && 
           <Intro message="Welcome to CodeTyke" buttonLabel="Start" buttonClick={() => setGameStatus('inProgress')} />
         }
         
-        { gameStatus =="inProgress" &&
+        { gameStatus === "inProgress" &&
           <LearningModule gameStatus={gameStatus} setGameStatus={setGameStatus}/>
         }
       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import SelectionBox from '../selectionBox/SelectionBox';
 import Button from '../button/Button';
 import Intro from '../intro/Intro';
+import ProgressBar from '../progressBar/ProgressBar';
 
 import './Styles.scss';
 
@@ -20,7 +21,6 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
     console.log(gameStatus);
   },[gameStatus]);
 
-
   const getQuizData=()=>{
     fetch("http://localhost:8080/problems")
       .then((res)=>{
@@ -34,7 +34,6 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
 
   const handleSubmit=()=> {
     if(currentQuestionId < quizData.totalQuestions-1){
-      console.log(currentQuestionId)
       setCurrentQuestionId(currentQuestionId+1);
     } else if (!isComplete) {
       setIsComplete(true);
@@ -56,9 +55,14 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
-            <div className="learningModule__title">
-              { currentQuestion.title }
-            </div>
+
+              <div className="learningModule__title">
+                <ProgressBar currentProgressValue={currentQuestionId} isComplete={isComplete}/>
+                <div className="learningModule__innerWrapper"> 
+                  { currentQuestion.title }
+                  <img className="learningModule__icon" alt="information icon" src="/assets/info.png" />
+                </div>
+              </div>
             <div className="learningModule__subHeader">
               { currentQuestion.additionalInfo }
             </div>
