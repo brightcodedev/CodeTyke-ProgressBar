@@ -57,7 +57,9 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
-            <ProgressBar quizData={quizData} currentQuestionId={currentQuestionId}/>
+            <div className="learningModule__progressBarContainer">
+              <ProgressBar quizData={quizData} currentQuestionId={currentQuestionId}/>
+            </div>
             <div className="learningModule__title">
               { currentQuestion.title }
             </div>

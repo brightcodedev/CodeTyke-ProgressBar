@@ -1,4 +1,5 @@
 @import "../../styles/utils/colors";
+@import "../../styles/utils/breakpoints";
 
 $progressBarBorderRadius: 20px;
 
@@ -8,11 +9,20 @@ $progressBarBorderRadius: 20px;
     position: relative;
     display: flex;
     align-items: center;
+
+    &__dot {
+      height: 10px;
+      width: 10px;
+      background-color: $elephant-paw;
+      border-radius: 100%;
+    }
+
     &--incomplete {
       height: 2px;
       width: 100%;
       background-color: $elephant-paw;
     }
+
     &--complete {
       position: absolute;
       top: 0;
@@ -22,10 +32,8 @@ $progressBarBorderRadius: 20px;
       border-bottom-left-radius: $progressBarBorderRadius;
       transition: 0.5s;
     }
-    &__dot {
-      height: 10px;
-      width: 10px;
-      background-color: $elephant-paw;
-      border-radius: 100%;
+
+    @media only screen and (max-width: $tablet) {
+      width: 90%;
     }
 }
