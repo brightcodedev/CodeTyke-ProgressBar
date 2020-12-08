@@ -1,0 +1,50 @@
+@import '../../styles/utils/colors';
+@import '../../styles//utils/breakpoints';
+
+.progressBarContainer {
+  &__line {
+    background-color: $elephant-paw;
+    height: 2px;
+    position: relative;
+
+    @media only screen and (max-width: $mobile) {
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
+    &__circle {
+      position: absolute;
+      bottom: -2px;
+      height: 6px;
+      width: 6px;
+      background: $elephant-paw;
+      content: '';
+      border-radius: 6px;
+      right: 0;
+      left: auto;
+
+
+      @media only screen and (max-width: $mobile) {
+        height: 12px;
+        width: 12px;
+        border-radius: 12px;
+        bottom: -6px;
+      }
+    }
+
+    &__progress {
+      height: 15px;
+      background-color: $barney;
+      display: inline-block;
+      position: relative;
+      content: '';
+      top: -7px;
+      border-radius: 15px 0px 0px 15px;
+
+      @media only screen and (max-width: $mobile) {
+        height: 20px;
+        top: -10px;
+      }
+    }
+  }
+}
