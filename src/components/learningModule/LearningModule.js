@@ -2,22 +2,27 @@ import React from 'react';
 import SelectionBox from '../selectionBox/SelectionBox';
 import Button from '../button/Button';
 import Intro from '../intro/Intro';
-
 import './Styles.scss';
+import ProgressBar from '../progressBar/ProgressBar';
 
 const LearningModule = ({setGameStatus, gameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
   const [quizData, setQuizData] = React.useState({});
   const [isComplete, setIsComplete] = React.useState(false);
+  const [percentCompletion, setPercentCompletion] = React.useState(0);
   
   let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
+
+  let calculatePercentage = (questionID, totalQuestions) => {
+    return (Math.round((questionID + 1) / (totalQuestions + 1) * 100))
+  }
   
   React.useEffect(()=>{
-    getQuizData();
+    getQuizData(); 
   },[]);
 
   React.useEffect(()=>{
-    console.log(gameStatus);
+    console.log(gameStatus); 
   },[gameStatus]);
 
 
@@ -27,6 +32,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
         return res.json();
       }).then((data)=>{
         setQuizData(data);
+        setPercentCompletion(calculatePercentage(0, data.totalQuestions))
       }).catch((err)=>{
         console.log(err);
       });
@@ -35,13 +41,17 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   const handleSubmit=()=> {
     if(currentQuestionId < quizData.totalQuestions-1){
       console.log(currentQuestionId)
-      setCurrentQuestionId(currentQuestionId+1);
+      let nextId = currentQuestionId + 1
+      setCurrentQuestionId(nextId); 
+      setPercentCompletion(calculatePercentage(nextId, quizData.totalQuestions));
     } else if (!isComplete) {
       setIsComplete(true);
+      setPercentCompletion(100);
     } else {
-      setCurrentQuestionId(0);
+      setCurrentQuestionId(0); 
       setIsComplete(false);
       setGameStatus('new');
+      setPercentCompletion(0);
     }
   }
   let possibleAnswers = [];
@@ -53,6 +63,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
 
   return (
     <div className="learningModule">
+      <ProgressBar percentage={percentCompletion}/>
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
