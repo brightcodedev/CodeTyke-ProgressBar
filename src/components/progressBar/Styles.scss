@@ -22,9 +22,9 @@
     position: absolute;
     top: -5px;
     background-color: $barney;
-    border-radius: 50px 0 0 50px;
+    border-radius: 7.5px 0 0 7.4px;
     height: 15px;
-    transition: .7s;
+    transition: width .7s;
     @media only screen and (max-width: $tablet) {
       max-width: 90%;
     }
