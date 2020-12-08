@@ -5,7 +5,7 @@
 .meter{
     height: 20px;  /* Can be anything */
     position: relative;
-    background: #555;
+    background: rgb(199, 198, 198);
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
     border-radius: 25px;
@@ -16,10 +16,7 @@
 .meter > span {
     display: block;
     height: 100%;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-radius: 25px;
     background-color: $barney;
     background-image: linear-gradient(
       center bottom,

@@ -53,11 +53,14 @@ const LearningModule = ({ setGameStatus, gameStatus }) => {
       return <SelectionBox id={index} key={index} answer={answer} />;
     });
   }
-  console.log("CURRENT ID", currentQuestionId);
+  console.log("QUIZ INFO", quizData.totalQuestions);
 
   return (
     <div className="learningModule">
-      <ProgressBar currQ={currentQuestionId} completion={isComplete} />
+      <ProgressBar
+        currQ={currentQuestionId + 1}
+        questions={quizData.totalQuestions}
+      />
       {currentQuestion.title && !isComplete && (
         <>
           <div className="learningModule__header">
