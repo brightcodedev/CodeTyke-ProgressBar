@@ -4,6 +4,7 @@ import Button from '../button/Button';
 import Intro from '../intro/Intro';
 
 import './Styles.scss';
+import ProgressBar from '../progressBar/ProgressBar';
 
 const LearningModule = ({setGameStatus, gameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
@@ -53,6 +54,11 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
 
   return (
     <div className="learningModule">
+      <ProgressBar
+        segments={quizData.totalQuestions + 1}
+        currentQuestionId={currentQuestionId}
+        isComplete={isComplete}
+      />
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
